@@ -14,7 +14,7 @@
         <div class="panel-body">
 
     <form method="post" action="{{route ('imoveis.store')}}">
-        {{ csrf_field() }}
+        @csrf
         <h4>Dados do imóvel</h4>
         <hr>
         <div class="form-group">

@@ -35,7 +35,27 @@
                         <li><a href="{{route('imoveis.index', 'tipo=casa')}}">Casas</a></li>
                         <li><a href="{{route('imoveis.index', 'tipo=kitnet')}}">Kitnet</a></li>
                     </ul>
+                    @guest
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{url('/login')}}">Login</a></li>
+                        <li><a href="{{url('/register')}}">Cadastrar</a></li>
+                      </ul>
+                      @endguest
+                    @auth
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              {{Auth::user()->name}}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="{{url('/user/profile/me')}}">Perfil</a></li>
+                              <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+                            </ul>
+                          </div></li>
+                      </ul>
+                      @endauth
                 </div>
+               
             </div>
         </nav>
         <div class="container">
