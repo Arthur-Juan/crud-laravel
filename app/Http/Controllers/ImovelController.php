@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\DB;
 class ImovelController extends Controller
 {   
 
-
-
-   
  
     /**
      * Display a listing of the resource.
@@ -27,7 +24,6 @@ class ImovelController extends Controller
 
         if($cidade){
             $imoveis = DB::table('imoveis')->where('cidadeEndereco','=', $cidade)->paginate(5);
-            // $imoveis = Imovel::where('cidadeEndereco' .' = '. $cidade)->paginate(5);
         }elseif($tipo){
             $imoveis = DB::table('imoveis')->where('tipo', '=', $tipo)->paginate(5); 
         }

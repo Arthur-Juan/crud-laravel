@@ -9,6 +9,11 @@
 
         <div class="panel-body">
 
+            @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <h4>{{$errors->first()}}</h4>
+            </div>
+        @endif
 
             <form action="{{route('login')}}" method="post">
                     @csrf

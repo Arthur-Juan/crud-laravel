@@ -21,8 +21,8 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->withError([
-            'email'=>'Email ou senha incorretos'
+        return back()->withErrors([
+            'errors'=>'Email ou senha incorretos!'
         ]);
         
     }

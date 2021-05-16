@@ -6,7 +6,13 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">Cadastrar</div>
+        @if ($errors->any())
 
+        <h4><div class="alert alert-danger" role="alert">
+            <h4>{{$errors->first()}}</h4>
+        </div></h4>
+
+        @endif
         <div class="panel-body">
 
 
