@@ -20,16 +20,13 @@ class RegisterController extends Controller
         
         $request->validate([
             "name"=> "required | string",
-            "email"=>"required | email",
+            "email"=>"required | email | unique:users",
             "address"=>"required | string"
         ]);
 
         $data = $request->only('name', 'email', 'password', 'address');
         
-        $user = User::where('email', '=', $data['email']);
-        if($user !== null){
-            return back()->withErrors(['msg'=>'Esse email já está associado a uma conta!']);
-        }
+      
         
         foreach($data as $value){
             if($value === null){

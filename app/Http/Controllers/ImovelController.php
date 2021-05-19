@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Imovel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ImovelController extends Controller
 {   
@@ -72,6 +73,7 @@ class ImovelController extends Controller
 
        
        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
        Imovel::create($data);
 
        return redirect('/');
@@ -86,6 +88,10 @@ class ImovelController extends Controller
     public function show($id)
     {
         $imovel = Imovel::find($id);
+        if($imovel === null){
+            $imovel = Imovel::latest()->first();
+                        
+        }
 
         return view('imoveis.show', compact('imovel'));
     }
@@ -97,8 +103,12 @@ class ImovelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $imovel = Imovel::find($id);
+        if($imovel->user->id !== Auth::user()->id){
+            return redirect('/')->withErrors(['msg'=>'Você só pode alterar os seus próprios imóveis']);
+        }
+
         return view('imoveis.edit', compact('imovel'));
     }
 

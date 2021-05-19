@@ -15,6 +15,8 @@ class CreateImovelsTable extends Migration
     {
         Schema::create('imoveis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('descricao');
             $table->string('logradouroEndereco');
             $table->string('bairroEndereco');

@@ -93,11 +93,20 @@
           </div>
         </div>
         <div class="row gutters-sm">
-          <div class="col-sm-6 mb-3">
-            <div class="card h-100">
-                CARD DOS APARTAMENTOS SELECIONADOS     
+          
+            @foreach ($imoveis as $imovel)
+            <div class="col-sm-6 mb-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{$imovel->descricao}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{$imovel->cidadeEndereco}}</h6>
+                <p class="card-text">{{$imovel->descricao}}</p>
+                <a href="{{route('imoveis.show', $imovel->id)}}" class="btn btn-info">Ver detalhes</a>
+                {{-- <a href="#" class="card-link">Another link</a> --}}
+              </div>
             </div>
           </div>
+            @endforeach
           
         </div>
       </div>

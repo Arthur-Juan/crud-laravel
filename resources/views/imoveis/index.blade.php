@@ -1,6 +1,14 @@
 @extends('shared.base')
 @section('content')
     <div class="panel panel-default">
+        @if ($errors->any())
+
+        <h4><div class="alert alert-danger" role="alert">
+            <h4>{{$errors->first()}}</h4>
+        </div></h4>
+
+        @endif
+
         <div class="panel-heading">Lista de Imóveis</div>
         <form method="GET" action="{{route('imoveis.index', 'cidade' )}}">
         <div class="row">
@@ -36,9 +44,18 @@
                                 <td>{{$imovel->finalidade}}</td>
                                 <td>{{$imovel->tipo}}</td>
                                 <td>
-                                    <a href="{{route('imoveis.remove', $imovel->id)}}"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="{{route('imoveis.edit', $imovel->id)}}"><i class="glyphicon glyphicon-pencil"></i></a>
                                     <a href="{{route('imoveis.show', $imovel->id)}}"><i class="glyphicon glyphicon-zoom-in"></i></a>
+                                    @auth
+                                    @if($imovel->user->id === Auth::user()->id)
+                                    <a href="{{route('imoveis.remove', $imovel->id)}}"><i class="glyphicon glyphicon-trash"></i></a>
+                                    @endif
+                                    @endauth
+
+                                    @auth
+                                    @if($imovel->user->id === Auth::user()->id)
+                                    <a href="{{route('imoveis.edit', $imovel->id)}}"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    @endif
+                                    @endauth
                                 </td>
                             </tr>
                         @endforeach

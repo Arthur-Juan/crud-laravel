@@ -13,8 +13,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('user.profile');
+    {     
+        $imoveis = User::find(Auth::user()->id)->hasImoveis;
+        return view('user.profile',['imoveis'=> $imoveis]);
     }
 
     /**
