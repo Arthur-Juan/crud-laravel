@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="main-body">
-    
+
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="main-breadcrumb">
       <ol class="breadcrumb">
@@ -10,7 +10,7 @@
       </ol>
       <ul class="nav navbar-nav navbar-right">
         {{-- <li><a href="{{route('user.edit'), Auth::user()->id}}" class="btn btn-primary">Editar Perfil</a></li> --}}
-       
+
       </ul>
 
     </nav>
@@ -34,20 +34,20 @@
         </div>
         <div class="card mt-3">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">                 
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              <a  class='btn btn-primary'href="{{route('user.edit')}}">Editar Perfil</a>                 
+              <a  class='btn btn-primary' href="{{route('user.edit')}}">Editar Perfil</a>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-              
+
               <form action="{{route('user.delete')}}" method="post" name='formdel'>
               @csrf
               @method('DELETE')
-             <button type="submit" class="btn btn-danger js-del">Apagar conta</button>         
+             <button type="submit" class="btn btn-danger js-del">Apagar conta</button>
               </form>
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -93,7 +93,7 @@
           </div>
         </div>
         <div class="row gutters-sm">
-          
+
             @foreach ($imoveis as $imovel)
             <div class="col-sm-6 mb-3">
             <div class="card" style="width: 18rem;">
@@ -101,17 +101,27 @@
                 <h5 class="card-title">{{$imovel->descricao}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$imovel->cidadeEndereco}}</h6>
                 <p class="card-text">{{$imovel->descricao}}</p>
-                <a href="{{route('imoveis.show', $imovel->id)}}" class="btn btn-info">Ver detalhes</a>
-                {{-- <a href="#" class="card-link">Another link</a> --}}
+                  <div class="dropdown">
+                      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Opções
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a href="{{route('imoveis.show', $imovel->id)}}" class="btn btn-info">Ver detalhes</a></li>
+                          <li><a href="{{route('imoveis.edit', $imovel->id)}}" class="btn btn-info">Editar imóvel</a></li>
+                          <li><a href="{{route('imoveis.remove', $imovel->id)}}" class="btn btn-danger">Apagar imóvel</a></li>
+                      </ul>
+                  </div>
+
+
               </div>
             </div>
           </div>
             @endforeach
-          
+
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 
   <script src="{{asset('/js/del.js')}}"></script>
   @endsection

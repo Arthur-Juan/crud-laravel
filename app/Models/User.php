@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Imovel;
+
+/**
+ * @method static find($id)
+ * @method static latest()
+ * @method static create(array $data)
+ */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -47,7 +52,7 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($password);
     }
-    
+
 
     public function hasImoveis(){
         return $this->hasMany(Imovel::class);

@@ -2,13 +2,13 @@
 @section('content')
 
     <div class="panel panel-default">
- 
+
     <div class="panel-heading">Detalhes do Imóvel</div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
                 <h4>Sobre o imóvel</h4>
-                <h3>Dono: {{$imovel->user->name}}</h3>
+                <h3>Dono: <a href='{{route('user.show', $imovel->user->id)}}'>{{$imovel->user->name}}</a></h3>
                 <p>Descrição: {{$imovel->descricao}}</p>
                 <p>Preço:  R$ {{$imovel->preco}}</p>
                 <p>Quantida de quartos: {{$imovel->qtdQuartos}}</p>

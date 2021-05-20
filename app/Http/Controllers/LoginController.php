@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use \App\Models\User;
+
 class LoginController extends Controller
 {
-    
 
-    public function authenticate(Request $request){
+
+    public function authenticate(Request $request): RedirectResponse
+    {
 
         $credentials = $request->only('email', 'password');
-            
+
         if(Auth::attempt($credentials)){
-            
+
             $request->session()->regenerate();
 
             return redirect()->intended('/');
@@ -24,7 +25,7 @@ class LoginController extends Controller
         return back()->withErrors([
             'errors'=>'Email ou senha incorretos!'
         ]);
-        
+
     }
 
     public function logout(Request $request){
@@ -40,6 +41,7 @@ class LoginController extends Controller
     public function showForm(){
         return view('auth.index');
     }
-   
-   
+
+
 }
+

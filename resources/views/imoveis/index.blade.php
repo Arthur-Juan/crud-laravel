@@ -9,7 +9,7 @@
 
         @endif
 
-        <div class="panel-heading">Lista de Imóveis</div>
+        <div class="panel-heading">List de Imóveis</div>
         <form method="GET" action="{{route('imoveis.index', 'cidade' )}}">
         <div class="row">
             <div class="col-md-12">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div align="center" class="row">
-		    {{ $imoveis->links() }}     
+		    {{ $imoveis->links() }}
 	    </div>
     </div>
     <a href="{{route('imoveis.create')}}"><button class="btn btn-primary">Adicionar</button></a>

@@ -5,7 +5,6 @@ use \App\Http\Controllers\ImovelController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\RegisterController;
-use App\Models\Imovel;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +37,12 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->n
 
  Route::name('user.')->namespace('user')->prefix('user')->group(function (){
 
-    //View profile 
+    //View profile
     Route::get('/profile/me', [UserController::class,'index'])->middleware('auth');
 
    Route::get('/profile/me/edit', [UserController::class, 'edit'])->middleware('auth')->name('edit');
    Route::put('/profile/me/edit', [UserController::class, 'update'])->middleware('auth')->name('update');
    Route::delete('/profile/me/delete', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
+
+   Route::get('/profile/{id}', [UserController::class, 'show'])->name('show');
  });
